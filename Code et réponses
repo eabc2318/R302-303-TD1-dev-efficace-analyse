@@ -1,0 +1,118 @@
+EXO 1 --------------------------------
+
+@startuml
+left to right direction
+actor "Voyageurs" as Voyageur
+actor "Machine centrale" as Machine
+
+package "Distributeur de billets de train" {
+
+  usecase "Achat" as Achat
+  usecase "Erreur" as Erreur
+
+  usecase "Achat billet aller simple" as Simple
+  usecase "Achat abonnement hebdomadaire" as Hebdo
+  usecase "Achat abonnement mensuel" as Mensuel
+
+  usecase "Mettre à jour les tarifs" as Maj
+
+  usecase "Temps trop long" as Timeout
+  usecase "Annulation de la transaction" as Annuler
+  usecase "Plus de papier" as Papier
+}
+
+Voyageur --> Achat
+Achat --> Simple
+Achat --> Hebdo
+Achat --> Mensuel
+
+Machine --> Maj
+Maj .> Achat : <<extend>>
+
+Machine --> Timeout 
+Machine --> Annuler 
+Machine --> Papier 
+
+Timeout .> Erreur : <<extend>>
+Annuler .> Erreur : <<extend>>
+Papier .> Erreur : <<extend>>
+
+Erreur .> Achat : <<extend>>
+
+EXO 2 --------------------------------------------------------
+
+@startuml
+left to right direction
+
+actor "Passager" as Passager
+rectangle "Bouton extérieur" as BE 
+rectangle "Bouton intérieur" as BI 
+
+package "Ascenseur" {
+
+  usecase "Appuie Bouton" as AB
+  usecase "Appeler ascenseur" as Appelle
+  usecase "Affichage de l'interface" as Affiche
+  usecase "Choisir étage" as Choisir
+  
+  usecase "Fermer" as Ferme
+  usecase "Deplacer la cage" as Deplacer
+  usecase "Ouvrir" as Ouvre
+  
+  usecase "Quitte Ascenseur" as Quitte
+  usecase "Extinction du panneau" as Eteindre
+}
+
+Passager --> AB
+
+
+Passager --> Quitte
+
+AB .-> Appelle : <<include>>
+AB .-> Affiche : <<include>>
+
+Appelle .-> Ferme : <<include>>
+Ferme .-> Deplacer : <<include>>
+Deplacer .-> Ouvre : <<include>>
+
+Affiche .-> Choisir : <<include>>
+Choisir .-> Ferme : <<include>>
+
+Quitte .-> Eteindre : <<include>>
+
+@enduml 
+
+2. 
+  CONDITIONS D'ENTREES 
+- l'utilisateur se trouve dans l'ascenseur, portes ouvertes
+  ACTION
+- l'utilisateur choisit l'étage
+- Les portes se ferment
+- L'ascenseur se déplace
+- Les portes s'ouvrent
+- L'utilisateur sort
+  CONDITION DE SORTIE
+- L'interface s'éteint
+
+Sommaire d'identité
+
+Titre : Choisir étage 
+Résumé : Permet de se déplacer a l'étage voulu
+Acteur : Passager
+Date : 9 septembre 11h51
+
+Description des scénarios 
+
+Pré Cond :
+L'utilisateur se trouve dans l'ascenseur, portes ouvertes
+
+Scénario nominal : 
+1. Le passager appuie sur le bouton étage (choisit)
+2. Le systeme allume le panneau d'affichage 
+3. le système ferme les portes
+4. Le système déplace l'ascenseur 
+5. Le systeme arrête l'ascenseur
+6. Le système ouvre les portes
+7. Le passager utilise ses capcité motrice et nerveseuse pour sortir de l'ascenseur
+8. Le système éteint l'affichage 
+
