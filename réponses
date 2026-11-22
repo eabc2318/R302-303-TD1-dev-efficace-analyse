@@ -1,0 +1,147 @@
+Exercice 1
+
+2. 
+  CONDITIONS D'ENTREES 
+- l'utilisateur se trouve dans l'ascenseur, portes ouvertes
+  ACTION
+- l'utilisateur choisit l'étage
+- Les portes se ferment
+- L'ascenseur se déplace
+- Les portes s'ouvrent
+- L'utilisateur sort
+  CONDITION DE SORTIE
+- L'interface s'éteint
+
+Sommaire d'identité
+
+Titre : Choisir étage 
+Résumé : Permet de se déplacer a l'étage voulu
+Acteur : Passager
+Date : 9 septembre 11h51
+
+Description des scénarios 
+
+Pré Cond :
+L'utilisateur se trouve dans l'ascenseur, portes ouvertes
+
+Scénario nominal : 
+1. Le passager appuie sur le bouton étage (choisit)
+2. Le systeme allume le panneau d'affichage 
+3. le système ferme les portes
+4. Le système déplace l'ascenseur 
+5. Le systeme arrête l'ascenseur
+6. Le système ouvre les portes
+7. Le passager utilise ses capcité motrice et nerveseuse pour sortir de l'ascenseur
+8. Le système éteint l'affichage 
+
+Exercice 3 
+
+1. Acteurs
+
+acteurs principaux :
+- Client individuel 
+- Groupe : structure collective (maisons de retraite par exemple)
+
+Acteurs secondaires :
+- Organisme subventionneur : securite sociale, groupe d'assurance, etc
+- Cuisine industrielle 
+- Livreur
+
+
+Exercice 4 
+
+1. Acteurs:
+
+- Porteur de carte 
+- client mab'arnaque 
+- Operateur de maintenance 
+- SI Banque Maa'arnaque
+- Systeme d'autorisation pour CB
+
+
+
+Cas 1 : Retirer de l'argent
+
+  CONDITIONS D'ENTREES
+
+- Le porteur de carte est devant le GAB avec sa carte de credit
+- Le distributeur a des billets en stock
+  ACTION
+- Le porteur insere sa carte et tape son code secret
+- Il choisit le montant a retirer
+- Le GAB verifie l'autorisation et distribue les billets
+
+  CONDITION DE SORTIE
+- Le porteur a recupere sa carte et son argent
+
+Sommaire d'identité
+Titre : Retirer de l'argent
+Résumé : Permet a tout porteur de carte de credit (client ou non de MaB'Arnaque) de retirer des billets
+Acteur : Porteur de carte, Banque Mab'Arnaque et systeme d'autorisation CB (secondaires)
+
+Description des scénarios
+Pré Cond :
+Le GAB est en service, contient des billets et le porteur possede une carte de credit valide.
+
+Scénario nominal :
+1. Le porteur insere sa carte dans le lecteur
+2. Le systeme demande le code PIN (inclusion de la securisation de la transaction)
+3. Le porteur saisit son code secret
+4. Le systeme verifie le code et demande le montant souhaite
+5. Le porteur choisit le montant
+6. Le systeme interroge le SI Banque ou le reseau CB pour verifier le solde et le plafond
+7. L'autorisation est validee, le GAB ejecte la carte
+8. Le porteur recupere sa carte
+9. Le distributeur sort les billets et le porteur les prend 
+
+
+
+Scénarios alternatifs et d'exception :
+
+- Code PIN faux : le systeme redemande le code (au bout de 3 essais rates la carte est avalee)
+- Solde insuffisant ou plafond depasse : la transaction est refusee, un message s'affiche et a carte est rendue
+- plus assez de billets dans le GAB : le systeme annule le retrait et ejecte la carte
+- Oubli de la carte ou des billets : apres un delai le GAB avale la carte ou reprend les billets
+
+
+Cas 2 : Consulter le solde de compte
+
+  CONDITIONS D'ENTREES
+- Le client MaB'Arnaque est devant le GAB avec sa carte de la banque
+
+  ACTION
+- Le client insere sa carte et s'authentifie
+- Il demande a voir son solde
+
+  CONDITION DE SORTIE
+- Le solde a ete affiche et le client a repris sa carte
+
+
+
+Sommaire d'identité
+
+Titre : Consulter le solde de compte
+Résumé : Permet a un client porteur d'une carte MaB'Arnaque de voir le solde de son compte
+Acteur : Client MaB'Arnaque (principal), SI Banque MaB'Arnaque (secondaire)
+
+
+Description des scénarios
+Pré Cond :
+Le client possede une carte de credit adossee a la banque MaB'Arnaque et le GAB est connecte au SI de la banque.
+
+Scénario nominal :
+1. Le client insere sa carte MaB'Arnaque dans le lecteur
+2. Le systeme securise la transaction en demandant le code secret
+3. Le client tape son code PIN
+4. Le client selectionne l'option consultation de solde
+5. Le systeme interroge le SI Banque MaB'Arnaque pour recuperer le montant
+6. Le systeme affiche le solde a l'ecran (et propose d'imprimer un ticket)
+7. Le client valide et recupere sa carte
+
+
+Scénarios alternatifs :
+- Carte non cliente MaB'Arnaque : le systeme refuse l'acces a cette fonctionnalite et rend la carte
+- Code PIN errone : nouvelle saisie demandee ou carte avalee apres 3 erreurs
+
+
+
